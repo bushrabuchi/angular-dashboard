@@ -1,0 +1,241 @@
+@use '@angular/material' as mat;
+
+@include mat.core();
+
+// ============================================================================
+// CUSTOM THEME CONFIGURATION
+// ============================================================================
+// Replace these palettes with your Material Theme Builder export
+
+// Define your custom primary palette
+$my-primary-palette: (
+  50: #e3f2fd,
+  100: #bbdefb,
+  200: #90caf9,
+  300: #64b5f6,
+  400: #42a5f5,
+  500: #2196f3,  // Main primary color
+  600: #1e88e5,
+  700: #1976d2,
+  800: #1565c0,
+  900: #0d47a1,
+  A100: #82b1ff,
+  A200: #448aff,
+  A400: #2979ff,
+  A700: #2962ff,
+  contrast: (
+    50: rgba(black, 0.87),
+    100: rgba(black, 0.87),
+    200: rgba(black, 0.87),
+    300: rgba(black, 0.87),
+    400: rgba(black, 0.87),
+    500: white,
+    600: white,
+    700: white,
+    800: white,
+    900: white,
+    A100: rgba(black, 0.87),
+    A200: white,
+    A400: white,
+    A700: white,
+  )
+);
+
+// Define your custom accent palette
+$my-accent-palette: (
+  50: #fce4ec,
+  100: #f8bbd0,
+  200: #f48fb1,
+  300: #f06292,
+  400: #ec407a,
+  500: #e91e63,  // Main accent color
+  600: #d81b60,
+  700: #c2185b,
+  800: #ad1457,
+  900: #880e4f,
+  A100: #ff80ab,
+  A200: #ff4081,
+  A400: #f50057,
+  A700: #c51162,
+  contrast: (
+    50: rgba(black, 0.87),
+    100: rgba(black, 0.87),
+    200: rgba(black, 0.87),
+    300: rgba(black, 0.87),
+    400: rgba(black, 0.87),
+    500: white,
+    600: white,
+    700: white,
+    800: white,
+    900: white,
+    A100: rgba(black, 0.87),
+    A200: white,
+    A400: white,
+    A700: white,
+  )
+);
+
+// Define your custom warn palette
+$my-warn-palette: (
+  50: #ffebee,
+  100: #ffcdd2,
+  200: #ef9a9a,
+  300: #e57373,
+  400: #ef5350,
+  500: #f44336,  // Main warn color
+  600: #e53935,
+  700: #d32f2f,
+  800: #c62828,
+  900: #b71c1c,
+  A100: #ff8a80,
+  A200: #ff5252,
+  A400: #ff1744,
+  A700: #d50000,
+  contrast: (
+    50: rgba(black, 0.87),
+    100: rgba(black, 0.87),
+    200: rgba(black, 0.87),
+    300: rgba(black, 0.87),
+    400: rgba(black, 0.87),
+    500: white,
+    600: white,
+    700: white,
+    800: white,
+    900: white,
+    A100: rgba(black, 0.87),
+    A200: white,
+    A400: white,
+    A700: white,
+  )
+);
+
+// Create the Material palettes
+$custom-primary: mat.define-palette($my-primary-palette, 500, 300, 700);
+$custom-accent: mat.define-palette($my-accent-palette, 500, 300, 700);
+$custom-warn: mat.define-palette($my-warn-palette, 500, 300, 700);
+
+// ============================================================================
+// LIGHT THEME
+// ============================================================================
+$light-theme: mat.define-light-theme((
+  color: (
+    primary: $custom-primary,
+    accent: $custom-accent,
+    warn: $custom-warn,
+  ),
+  typography: mat.define-typography-config(),
+  density: 0,
+));
+
+// ============================================================================
+// DARK THEME
+// ============================================================================
+$dark-theme: mat.define-dark-theme((
+  color: (
+    primary: $custom-primary,
+    accent: $custom-accent,
+    warn: $custom-warn,
+  ),
+  typography: mat.define-typography-config(),
+  density: 0,
+));
+
+// ============================================================================
+// APPLY THEMES
+// ============================================================================
+
+// Apply light theme by default
+@include mat.all-component-themes($light-theme);
+
+// Apply dark theme when .dark-theme class is on body
+body.dark-theme {
+  @include mat.all-component-colors($dark-theme);
+  
+  // Additional dark theme customizations
+  background-color: #121212;
+  color: #ffffff;
+  
+  .mat-drawer-container {
+    background-color: #121212;
+    color: #ffffff;
+  }
+  
+  .mat-drawer {
+    background-color: #1e1e1e;
+    color: #ffffff;
+  }
+  
+  .mat-toolbar {
+    background-color: #1e1e1e;
+  }
+  
+  .mat-card {
+    background-color: #1e1e1e;
+    color: #ffffff;
+  }
+  
+  .dashboard-container,
+  .analytics-container,
+  .settings-container {
+    background-color: #121212;
+  }
+  
+  // Table dark theme
+  .mat-mdc-table {
+    background-color: #1e1e1e;
+  }
+  
+  .mat-mdc-header-cell {
+    background-color: rgba(255, 255, 255, 0.05);
+    color: #ffffff;
+  }
+  
+  .mat-mdc-cell {
+    color: rgba(255, 255, 255, 0.87);
+  }
+  
+  .mat-mdc-row:hover {
+    background-color: rgba(255, 255, 255, 0.08);
+  }
+  
+  // Form fields
+  .mat-mdc-form-field {
+    .mat-mdc-text-field-wrapper {
+      background-color: rgba(255, 255, 255, 0.05);
+    }
+  }
+  
+  // Menu
+  .mat-mdc-menu-panel {
+    background-color: #1e1e1e;
+  }
+  
+  // Dividers
+  .mat-divider {
+    border-top-color: rgba(255, 255, 255, 0.12);
+  }
+}
+
+// Light theme specific adjustments
+body:not(.dark-theme) {
+  background-color: #fafafa;
+  
+  .dashboard-container,
+  .analytics-container,
+  .settings-container {
+    background-color: #f5f5f5;
+  }
+  
+  .mat-card {
+    background-color: #ffffff;
+  }
+  
+  .mat-drawer {
+    background-color: #ffffff;
+  }
+  
+  .mat-toolbar {
+    background-color: mat.get-color-from-palette($custom-primary, 500);
+    color: white;
+  }
+}

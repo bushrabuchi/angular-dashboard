@@ -1,0 +1,44 @@
+<mat-sidenav-container class="dashboard-sidenav-container">
+  <mat-sidenav #sidenav mode="side" [opened]="sidebarOpened" class="dashboard-sidenav">
+    <app-sidebar></app-sidebar>
+  </mat-sidenav>
+
+  <mat-sidenav-content class="dashboard-content">
+    <app-header (toggleSidebar)="onToggleSidebar()"></app-header>
+
+    <div class="dashboard-container">
+      <div class="dashboard-header">
+        <h1>Dashboard Overview</h1>
+        <button mat-raised-button color="accent" (click)="resetLayout()">
+          <mat-icon>refresh</mat-icon>
+          Reset Layout
+        </button>
+      </div>
+
+      <div class="widgets-grid" cdkDropList (cdkDropListDropped)="drop($event)">
+        <div *ngFor="let widget of widgets" class="widget-container" cdkDrag>
+          <div class="drag-handle" cdkDragHandle>
+            <mat-icon>drag_indicator</mat-icon>
+          </div>
+          
+          <mat-card class="widget-card">
+            <mat-card-header>
+              <mat-card-title>{{ widget.title }}</mat-card-title>
+              <button mat-icon-button (click)="removeWidget(widget.id)" class="remove-button">
+                <mat-icon>close</mat-icon>
+              </button>
+            </mat-card-header>
+            
+            <mat-card-content>
+              <app-chart-widget *ngIf="widget.type === 'chart'" [data]="widget.data"></app-chart-widget>
+              <app-stats-widget *ngIf="widget.type === 'stats'" [data]="widget.data"></app-stats-widget>
+              <app-table-widget *ngIf="widget.type === 'table'" [data]="widget.data"></app-table-widget>
+            </mat-card-content>
+          </mat-card>
+
+          <div class="drag-placeholder" *cdkDragPlaceholder></div>
+        </div>
+      </div>
+    </div>
+  </mat-sidenav-content>
+</mat-sidenav-container>

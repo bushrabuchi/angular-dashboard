@@ -1,0 +1,14 @@
+<div class="stats-container">
+  <div class="stats-icon">
+    <mat-icon>{{ data?.icon || 'trending_up' }}</mat-icon>
+  </div>
+  
+  <div class="stats-content">
+    <div class="stats-value">{{ data?.value | number }}</div>
+    
+    <div class="stats-change" [class.positive]="isPositiveChange" [class.negative]="!isPositiveChange">
+      <mat-icon>{{ isPositiveChange ? 'arrow_upward' : 'arrow_downward' }}</mat-icon>
+      <span>{{ data?.change | number:'1.1-1' }}%</span>
+    </div>
+  </div>
+</div>

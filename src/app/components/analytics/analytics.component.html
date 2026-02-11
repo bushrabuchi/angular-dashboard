@@ -1,0 +1,87 @@
+<mat-sidenav-container class="analytics-sidenav-container">
+  <mat-sidenav mode="side" [opened]="sidebarOpened">
+    <app-sidebar></app-sidebar>
+  </mat-sidenav>
+
+  <mat-sidenav-content>
+    <app-header (toggleSidebar)="onToggleSidebar()"></app-header>
+
+    <div class="analytics-container">
+      <h1>Analytics & Reports</h1>
+
+      <div class="metrics-grid">
+        <mat-card class="metric-card">
+          <mat-icon class="metric-icon revenue">attach_money</mat-icon>
+          <div class="metric-value">${{ analyticsData?.totalRevenue | number }}</div>
+          <div class="metric-label">Total Revenue</div>
+          <div class="metric-change positive">
+            <mat-icon>trending_up</mat-icon>
+            +{{ analyticsData?.revenueGrowth }}%
+          </div>
+        </mat-card>
+
+        <mat-card class="metric-card">
+          <mat-icon class="metric-icon orders">shopping_cart</mat-icon>
+          <div class="metric-value">{{ analyticsData?.totalOrders | number }}</div>
+          <div class="metric-label">Total Orders</div>
+          <div class="metric-change positive">
+            <mat-icon>trending_up</mat-icon>
+            +{{ analyticsData?.ordersGrowth }}%
+          </div>
+        </mat-card>
+
+        <mat-card class="metric-card">
+          <mat-icon class="metric-icon users">people</mat-icon>
+          <div class="metric-value">{{ analyticsData?.totalUsers | number }}</div>
+          <div class="metric-label">Total Users</div>
+          <div class="metric-change positive">
+            <mat-icon>trending_up</mat-icon>
+            +{{ analyticsData?.usersGrowth }}%
+          </div>
+        </mat-card>
+
+        <mat-card class="metric-card">
+          <mat-icon class="metric-icon conversion">show_chart</mat-icon>
+          <div class="metric-value">{{ analyticsData?.conversionRate }}%</div>
+          <div class="metric-label">Conversion Rate</div>
+          <div class="metric-change positive">
+            <mat-icon>trending_up</mat-icon>
+            +{{ analyticsData?.conversionGrowth }}%
+          </div>
+        </mat-card>
+      </div>
+
+      <div class="charts-grid">
+        <mat-card class="chart-card">
+          <mat-card-header>
+            <mat-card-title>Revenue Trend</mat-card-title>
+          </mat-card-header>
+          <mat-card-content>
+            <div class="chart-container">
+              <canvas baseChart
+                [data]="revenueChartData"
+                [options]="revenueChartOptions"
+                type="line">
+              </canvas>
+            </div>
+          </mat-card-content>
+        </mat-card>
+
+        <mat-card class="chart-card">
+          <mat-card-header>
+            <mat-card-title>Quarterly Sales</mat-card-title>
+          </mat-card-header>
+          <mat-card-content>
+            <div class="chart-container">
+              <canvas baseChart
+                [data]="barChartData"
+                [options]="barChartOptions"
+                type="bar">
+              </canvas>
+            </div>
+          </mat-card-content>
+        </mat-card>
+      </div>
+    </div>
+  </mat-sidenav-content>
+</mat-sidenav-container>
