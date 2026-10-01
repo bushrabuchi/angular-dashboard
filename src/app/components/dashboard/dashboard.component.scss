@@ -3,7 +3,7 @@
 }
 
 .dashboard-sidenav {
-  width: 260px;
+  width: 270px;
 }
 
 .dashboard-content {
@@ -16,7 +16,6 @@
 .dashboard-container {
   padding: 24px;
   background-color: #f5f5f5;
-  min-height: 100vh;;
 }
 
 .dashboard-header {
@@ -129,6 +128,6 @@
 
 :host-context(.dark-theme) {
   .dashboard-container {
-    background-color: #303030;
+    background-color: #080b18;
   }
 }

@@ -1,62 +1,64 @@
-@use '@angular/material' as mat;
+@use "@angular/material" as mat;
 
 @include mat.core();
 
-// ============================================================================
-// CUSTOM THEME CONFIGURATION
-// ============================================================================
-// Replace these palettes with your Material Theme Builder export
-
-// Define your custom primary palette
 $my-primary-palette: (
-  50: #e3f2fd,
-  100: #bbdefb,
-  200: #90caf9,
-  300: #64b5f6,
-  400: #42a5f5,
-  500: #2196f3,  // Main primary color
-  600: #1e88e5,
-  700: #1976d2,
-  800: #1565c0,
-  900: #0d47a1,
-  A100: #82b1ff,
-  A200: #448aff,
-  A400: #2979ff,
-  A700: #2962ff,
+  50: #eef2ff,
+  100: #e0e7ff,
+  200: #c7d2fe,
+  300: #a5b4fc,
+  400: #818cf8,
+  500: #6366f1,
+  600: #4f46e5,
+  700: #4338ca,
+  800: #3730a3,
+  900: #312e81,
+
+  A100: #c7d2fe,
+  A200: #818cf8,
+  A400: #6366f1,
+  A700: #4338ca,
+
   contrast: (
     50: rgba(black, 0.87),
     100: rgba(black, 0.87),
     200: rgba(black, 0.87),
     300: rgba(black, 0.87),
-    400: rgba(black, 0.87),
+    400: white,
     500: white,
     600: white,
     700: white,
     800: white,
     900: white,
+
     A100: rgba(black, 0.87),
     A200: white,
     A400: white,
     A700: white,
-  )
+  ),
 );
 
-// Define your custom accent palette
+// ============================================================================
+// ACCENT PALETTE — ELECTRIC CYAN
+// ============================================================================
+
 $my-accent-palette: (
-  50: #fce4ec,
-  100: #f8bbd0,
-  200: #f48fb1,
-  300: #f06292,
-  400: #ec407a,
-  500: #e91e63,  // Main accent color
-  600: #d81b60,
-  700: #c2185b,
-  800: #ad1457,
-  900: #880e4f,
-  A100: #ff80ab,
-  A200: #ff4081,
-  A400: #f50057,
-  A700: #c51162,
+  50: #ecfeff,
+  100: #cffafe,
+  200: #a5f3fc,
+  300: #67e8f9,
+  400: #22d3ee,
+  500: #06b6d4,
+  600: #0891b2,
+  700: #0e7490,
+  800: #155e75,
+  900: #164e63,
+
+  A100: #cffafe,
+  A200: #67e8f9,
+  A400: #22d3ee,
+  A700: #06b6d4,
+
   contrast: (
     50: rgba(black, 0.87),
     100: rgba(black, 0.87),
@@ -68,29 +70,35 @@ $my-accent-palette: (
     700: white,
     800: white,
     900: white,
+
     A100: rgba(black, 0.87),
-    A200: white,
-    A400: white,
+    A200: rgba(black, 0.87),
+    A400: rgba(black, 0.87),
     A700: white,
-  )
+  ),
 );
 
-// Define your custom warn palette
+// ============================================================================
+// WARN / ERROR — MODERN ROSE
+// ============================================================================
+
 $my-warn-palette: (
-  50: #ffebee,
-  100: #ffcdd2,
-  200: #ef9a9a,
-  300: #e57373,
-  400: #ef5350,
-  500: #f44336,  // Main warn color
-  600: #e53935,
-  700: #d32f2f,
-  800: #c62828,
-  900: #b71c1c,
-  A100: #ff8a80,
-  A200: #ff5252,
-  A400: #ff1744,
-  A700: #d50000,
+  50: #fff1f2,
+  100: #ffe4e6,
+  200: #fecdd3,
+  300: #fda4af,
+  400: #fb7185,
+  500: #f43f5e,
+  600: #e11d48,
+  700: #be123c,
+  800: #9f1239,
+  900: #881337,
+
+  A100: #ffe4e6,
+  A200: #fda4af,
+  A400: #fb7185,
+  A700: #e11d48,
+
   contrast: (
     50: rgba(black, 0.87),
     100: rgba(black, 0.87),
@@ -102,140 +110,422 @@ $my-warn-palette: (
     700: white,
     800: white,
     900: white,
+
     A100: rgba(black, 0.87),
-    A200: white,
+    A200: rgba(black, 0.87),
     A400: white,
     A700: white,
-  )
+  ),
 );
 
-// Create the Material palettes
+// ============================================================================
+// MATERIAL PALETTES
+// ============================================================================
+
 $custom-primary: mat.define-palette($my-primary-palette, 500, 300, 700);
+
 $custom-accent: mat.define-palette($my-accent-palette, 500, 300, 700);
+
 $custom-warn: mat.define-palette($my-warn-palette, 500, 300, 700);
 
 // ============================================================================
 // LIGHT THEME
 // ============================================================================
-$light-theme: mat.define-light-theme((
-  color: (
-    primary: $custom-primary,
-    accent: $custom-accent,
-    warn: $custom-warn,
-  ),
-  typography: mat.define-typography-config(),
-  density: 0,
-));
+
+$light-theme: mat.define-light-theme(
+  (
+    color: (
+      primary: $custom-primary,
+      accent: $custom-accent,
+      warn: $custom-warn,
+    ),
+
+    typography: mat.define-typography-config(
+        $font-family: "Inter, Roboto, sans-serif",
+      ),
+    density: 0,
+  )
+);
 
 // ============================================================================
 // DARK THEME
 // ============================================================================
-$dark-theme: mat.define-dark-theme((
-  color: (
-    primary: $custom-primary,
-    accent: $custom-accent,
-    warn: $custom-warn,
-  ),
-  typography: mat.define-typography-config(),
-  density: 0,
-));
+
+$dark-theme: mat.define-dark-theme(
+  (
+    color: (
+      primary: $custom-primary,
+      accent: $custom-accent,
+      warn: $custom-warn,
+    ),
+
+    typography: mat.define-typography-config(
+        $font-family: "Inter, Roboto, sans-serif",
+      ),
+    density: 0,
+  )
+);
 
 // ============================================================================
-// APPLY THEMES
+// APPLY LIGHT MATERIAL THEME
 // ============================================================================
 
-// Apply light theme by default
 @include mat.all-component-themes($light-theme);
 
-// Apply dark theme when .dark-theme class is on body
-body.dark-theme {
-  @include mat.all-component-colors($dark-theme);
-  
-  // Additional dark theme customizations
-  background-color: #121212;
-  color: #ffffff;
-  
-  .mat-drawer-container {
-    background-color: #121212;
-    color: #ffffff;
-  }
-  
-  .mat-drawer {
-    background-color: #1e1e1e;
-    color: #ffffff;
-  }
-  
-  .mat-toolbar {
-    background-color: #1e1e1e;
-  }
-  
-  .mat-card {
-    background-color: #1e1e1e;
-    color: #ffffff;
-  }
-  
+// ============================================================================
+// GLOBAL LIGHT THEME
+// ============================================================================
+
+body:not(.dark-theme) {
+  background: #f5f7ff;
+  color: #172033;
+
+  // --------------------------------------------------------------------------
+  // Main containers
+  // --------------------------------------------------------------------------
+
   .dashboard-container,
   .analytics-container,
   .settings-container {
-    background-color: #121212;
+    background: #f5f7ff;
+    color: #172033;
   }
-  
-  // Table dark theme
+
+  // --------------------------------------------------------------------------
+  // Toolbar
+  // --------------------------------------------------------------------------
+
+  .mat-toolbar {
+    background: rgba(255, 255, 255, 0.92);
+    color: #172033;
+    border-bottom: 1px solid #e2e7f5;
+    box-shadow: 0 1px 3px rgba(67, 56, 202, 0.05);
+    backdrop-filter: blur(12px);
+  }
+
+  // --------------------------------------------------------------------------
+  // Cards
+  // --------------------------------------------------------------------------
+
+  .mat-card,
+  .mat-mdc-card,
+  .modern-card {
+    background: #ffffff;
+    color: #172033;
+    border: 1px solid #e3e7f5;
+    border-radius: 16px;
+    box-shadow:
+      0 2px 6px rgba(67, 56, 202, 0.04),
+      0 8px 24px rgba(67, 56, 202, 0.05);
+    transition:
+      transform 180ms ease,
+      box-shadow 180ms ease,
+      border-color 180ms ease;
+  }
+
+  .mat-card:hover,
+  .mat-mdc-card:hover,
+  .modern-card:hover {
+    border-color: #c7d2fe;
+    box-shadow:
+      0 6px 14px rgba(67, 56, 202, 0.06),
+      0 16px 35px rgba(99, 102, 241, 0.08);
+  }
+
+  // --------------------------------------------------------------------------
+  // Drawer
+  // --------------------------------------------------------------------------
+
+  .mat-drawer-container {
+    background: #f5f7ff;
+    color: #172033;
+  }
+
+  .mat-drawer {
+    background: #ffffff;
+    color: #0f172a;
+
+    border-right: 1px solid #e2e8f0;
+  }
+
+  // --------------------------------------------------------------------------
+  // Tables
+  // --------------------------------------------------------------------------
+
   .mat-mdc-table {
-    background-color: #1e1e1e;
+    background: #ffffff;
   }
-  
+
   .mat-mdc-header-cell {
-    background-color: rgba(255, 255, 255, 0.05);
-    color: #ffffff;
+    background: #f8fafc;
+    color: #475569;
+
+    font-weight: 600;
+
+    border-bottom: 1px solid #e2e8f0;
   }
-  
+
   .mat-mdc-cell {
-    color: rgba(255, 255, 255, 0.87);
+    color: #334155;
+
+    border-bottom-color: #f1f5f9;
   }
-  
+
   .mat-mdc-row:hover {
-    background-color: rgba(255, 255, 255, 0.08);
+    background: #f8fafc;
   }
-  
+
+  // --------------------------------------------------------------------------
   // Form fields
+  // --------------------------------------------------------------------------
+
   .mat-mdc-form-field {
     .mat-mdc-text-field-wrapper {
-      background-color: rgba(255, 255, 255, 0.05);
+      background: #ffffff;
     }
   }
-  
-  // Menu
+
+  // --------------------------------------------------------------------------
+  // Menus
+  // --------------------------------------------------------------------------
+
   .mat-mdc-menu-panel {
-    background-color: #1e1e1e;
+    background: #ffffff;
+
+    border: 1px solid #e2e8f0;
+
+    box-shadow: 0 10px 30px rgba(15, 23, 42, 0.12);
   }
-  
-  // Dividers
+
+  // --------------------------------------------------------------------------
+  // Divider
+  // --------------------------------------------------------------------------
+
   .mat-divider {
-    border-top-color: rgba(255, 255, 255, 0.12);
+    border-top-color: #e2e8f0;
   }
 }
 
-// Light theme specific adjustments
-body:not(.dark-theme) {
-  background-color: #fafafa;
-  
+// ============================================================================
+// DARK THEME
+// ============================================================================
+
+body.dark-theme {
+  // Apply Material dark colors
+  @include mat.all-component-colors($dark-theme);
+  background: #080b18;
+  color: #f8fafc;
+
   .dashboard-container,
   .analytics-container,
   .settings-container {
-    background-color: #f5f5f5;
+    background: #080b18;
+    color: #f8fafc;
   }
-  
-  .mat-card {
-    background-color: #ffffff;
-  }
-  
-  .mat-drawer {
-    background-color: #ffffff;
-  }
-  
   .mat-toolbar {
-    background-color: mat.get-color-from-palette($custom-primary, 500);
-    color: white;
+    background: rgba(13, 19, 38, 0.92);
+    color: #f8fafc;
+    border-bottom: 1px solid #1c2640;
+    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.25);
+    backdrop-filter: blur(12px);
+  } // Sidebar
+  .mat-drawer-container {
+    background: #080b18;
+    color: #f8fafc;
+  }
+  .mat-drawer {
+    background: #0d1326;
+    color: #f8fafc;
+    border-right: 1px solid #1c2640;
+  }
+  // Cards
+  .mat-card,
+  .mat-mdc-card,
+  .modern-card {
+    background: #10162a;
+    color: #f8fafc;
+    border: 1px solid #1c2640;
+    border-radius: 16px;
+    box-shadow: 0 4px 14px rgba(0, 0, 0, 0.2);
+    transition:
+      transform 180ms ease,
+      box-shadow 180ms ease,
+      border-color 180ms ease;
+  }
+  .mat-card:hover,
+  .mat-mdc-card:hover,
+  .modern-card:hover {
+    border-color: rgba(129, 140, 248, 0.45);
+    box-shadow:
+      0 8px 25px rgba(0, 0, 0, 0.28),
+      0 0 25px rgba(99, 102, 241, 0.06);
+  } // Elevated card .card-elevated { background: #151d35; } // Table
+  .mat-mdc-table {
+    background: #10162a;
+  }
+  .mat-mdc-header-cell {
+    background: #0d1326;
+    color: #cbd5e1;
+    border-bottom-color: #1c2640;
+  }
+  .mat-mdc-cell {
+    color: #cbd5e1;
+    border-bottom-color: #1c2640;
+  }
+  .mat-mdc-row:hover {
+    background: rgba(99, 102, 241, 0.06);
+  }
+  // Form fields
+  .mat-mdc-form-field {
+    .mat-mdc-text-field-wrapper {
+      background: #10162a;
+    }
+  }
+}
+
+// ============================================================================
+// MODERN UI UTILITIES
+// ============================================================================
+
+// Primary gradient
+.theme-gradient {
+  background: linear-gradient(135deg, #6366f1 0%, #8b5cf6 50%, #06b6d4 100%);
+}
+
+// Text gradient
+.theme-gradient-text {
+  background: linear-gradient(135deg, #6366f1, #8b5cf6, #06b6d4);
+
+  -webkit-background-clip: text;
+  background-clip: text;
+  -webkit-text-fill-color: transparent;
+}
+
+// Modern accent glow
+.theme-glow {
+  box-shadow: 0 0 25px rgba(99, 102, 241, 0.18);
+}
+
+// Modern card
+.modern-card {
+  border-radius: 16px;
+  border: 1px solid #e2e8f0;
+
+  background: #ffffff;
+
+  box-shadow: 0 4px 16px rgba(15, 23, 42, 0.05);
+
+  transition:
+    transform 180ms ease,
+    box-shadow 180ms ease,
+    border-color 180ms ease;
+}
+
+.modern-card:hover {
+  transform: translateY(-2px);
+
+  border-color: #c7d2fe;
+
+  box-shadow: 0 10px 30px rgba(99, 102, 241, 0.1);
+}
+
+// Dark modern card
+body.dark-theme {
+  .modern-card {
+    background: #111827;
+
+    border-color: #1e293b;
+
+    box-shadow: 0 4px 16px rgba(0, 0, 0, 0.2);
+  }
+
+  .modern-card:hover {
+    border-color: rgba(99, 102, 241, 0.45);
+
+    box-shadow: 0 10px 30px rgba(0, 0, 0, 0.3);
+  }
+}
+
+// ============================================================================
+// STATUS COLORS
+// ============================================================================
+
+.status-success {
+  color: #059669;
+}
+
+.status-warning {
+  color: #d97706;
+}
+
+.status-error {
+  color: #e11d48;
+}
+
+.status-info {
+  color: #0891b2;
+}
+
+.status-primary {
+  color: #4f46e5;
+}
+
+// Dark mode status colors
+
+body.dark-theme {
+  .status-success {
+    color: #34d399;
+  }
+
+  .status-warning {
+    color: #fbbf24;
+  }
+
+  .status-error {
+    color: #fb7185;
+  }
+
+  .status-info {
+    color: #22d3ee;
+  }
+
+  .status-primary {
+    color: #818cf8;
+  }
+}
+
+// ============================================================================
+// SCROLLBAR
+// ============================================================================
+
+::-webkit-scrollbar {
+  width: 8px;
+  height: 8px;
+}
+
+::-webkit-scrollbar-track {
+  background: #f1f5f9;
+}
+
+::-webkit-scrollbar-thumb {
+  background: #cbd5e1;
+  border-radius: 999px;
+}
+
+::-webkit-scrollbar-thumb:hover {
+  background: #94a3b8;
+}
+
+body.dark-theme {
+  ::-webkit-scrollbar-track {
+    background: #0f172a;
+  }
+
+  ::-webkit-scrollbar-thumb {
+    background: #334155;
+  }
+
+  ::-webkit-scrollbar-thumb:hover {
+    background: #475569;
   }
 }
